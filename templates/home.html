@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}SeaClear - Home{% endblock %} {%
+block extra_css %}
+<style>
+  .beach-card {
+    transition: transform 0.3s ease-in-out;
+  }
+  .beach-card:hover {
+    transform: scale(1.05);
+  }
+  .beach-image {
+    height: 200px;
+    object-fit: cover;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to SeaClear</h1>
+  <p class="lead">Explore and contribute to the health of our beaches.</p>
+  <hr class="my-4" />
+  <p>View beach conditions, leave comments, and help keep our shores clean.</p>
+</div>
+
+<h2 class="mb-4">Our Beaches</h2>
+
+<div class="row">
+  {% for beach in beaches %}
+  <div class="col-md-4 mb-4">
+    <div class="card beach-card">
+      <img
+        src="{{ url_for('static', filename='images/' + beach.get('image', 'default_beach.jpg')) }}"
+        class="card-img-top beach-image"
+        alt="{{ beach.get('Location', 'Beach') }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ beach.get('name', 'Unknown Beach') }}</h5>
+        <p class="card-text">
+          <strong>Grade:</strong> {{ beach.get('grade', 'N/A') }}<br />
+          <strong>Entroccit Count:</strong> {{ beach.get('entrocciticount',
+          'N/A') }}<br />
+          <strong>Last Updated:</strong> {{ beach.get('date', 'N/A') }}
+        </p>
+        <a
+          href="{{ url_for('beach_detail', beach_id=beach.get('_id', '')) }}"
+          class="btn btn-primary"
+          >View Details</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% if not beaches %}
+<div class="alert alert-info" role="alert">
+  No beaches found. Check back later for updates!
+</div>
+{% endif %} {% endblock %} {% block extra_js %}
+<script>
+  // You can add any JavaScript specific to the home page here
+</script>
+{% endblock %}

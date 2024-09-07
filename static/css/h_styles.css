@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/images/bg.jpg');
+    background-color: #dff0ff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin-top: 120px;
+    /* color: white; Optional: Change text color to improve readability */
+}
+header {
+    background-color: #0d47a1; /* Darker shade of blue */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the header stays above other content */
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
+}
+
+footer {
+    background-color: #0d47a1; /* Darker shade of blue */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for cards */
+    color: black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lifts the card up slightly */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increases shadow on hover */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent on hover */
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+
+footer {
+    font-size: 0.875rem;
+}
+
+
+/* Beach Cards Styling */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.card img {
+    border-radius: 4px 4px 0 0;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+    padding: 15px;
+}
+
+.card-body h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-body p {
+    margin: 5px 0;
+}
+
+.card-body a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.card-body a:hover {
+    background-color: #0056b3;
+}
+
+/* Show All Beaches Card */
+.card.d-flex {
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    height: 100%;
+    text-align: center;
+}
+
+.card.d-flex a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #abc6e2;
+    text-decoration: none;
+}
+
+.card.d-flex a:hover {
+    color: #0056b3;
+}

@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block title %}About Us{% endblock %} {% block
+content %}
+<main>
+  <section id="introduction">
+    <h2>Welcome to SeaClear</h2>
+    <p>
+      Cape Town’s stunning beaches are a major attraction for both residents and
+      visitors. The city's beautiful coastline and mild Mediterranean climate
+      offer the perfect setting for various seaside activities. However, issues
+      with water quality, particularly during busy times, pose significant
+      health risks. Despite concerns, many beachgoers are unaware of the poor
+      water quality due to inadequate communication methods. Reports have
+      highlighted high levels of pollutants at some beaches, leading to serious
+      health issues for swimmers.
+    </p>
+  </section>
+
+  <section id="mission">
+    <h2>Our Mission</h2>
+    <p>
+      The purpose of the SeaClear project is to provide Capetonians and tourists
+      with real-time, accurate water quality information for local beaches
+      through a mobile-friendly website. By offering this crucial data, the
+      platform aims to enhance public health and safety, empowering users to
+      make informed decisions about where to swim.
+    </p>
+  </section>
+
+  <section id="vision">
+    <h2>Our Vision</h2>
+    <p>
+      We envision a future where every beachgoer in Cape Town has easy access to
+      up-to-date information on water quality, ensuring a safer and more
+      enjoyable beach experience. Our goal is to foster a well-informed
+      community that values both the beauty of Cape Town's beaches and the
+      importance of maintaining their health and safety.
+    </p>
+  </section>
+
+  <section id="team">
+    <h2>Meet the Team</h2>
+    <div class="team-member">
+      <img
+        src="{{ url_for('static', filename='team-member3.jpg') }}"
+        alt="Brandon Leonard"
+      />
+      <h3>Brandon Leonard</h3>
+      <p>Team Leader</p>
+    </div>
+    <div class="team-member">
+      <img
+        src="{{ url_for('static', filename='team-member1.jpg') }}"
+        alt="Kwanele Nzimande"
+      />
+      <h3>Kwanele Nzimande</h3>
+      <p>Architect</p>
+    </div>
+    <div class="team-member">
+      <img
+        src="{{ url_for('static', filename='team-member2.jpg') }}"
+        alt="Luthando Mbuyane"
+      />
+      <h3>Luthando Mbuyane</h3>
+      <p>Communications</p>
+    </div>
+  </section>
+
+  <section id="special-thanks">
+    <h2>Special Thanks</h2>
+    <p>
+      We extend our heartfelt thanks to the following individuals whose honors
+      project work has significantly contributed to the SeaClear project:
+    </p>
+    <ul>
+      <li>
+        Kane Gibson -
+        <a href="mailto:GBSKAN001@myuct.ac.za">GBSKAN001@myuct.ac.za</a>
+      </li>
+      <li>
+        Chris McHardy -
+        <a href="mailto:MCHCHR009@myuct.ac.za">MCHCHR009@myuct.ac.za</a>
+      </li>
+      <li>
+        Kyler Rienderhoff -
+        <a href="mailto:RNDKYL001@myuct.ac.za">RNDKYL001@myuct.ac.za</a>
+      </li>
+      <li>
+        Willem Van Ryswyck -
+        <a href="mailto:VRYWIL006@myuct.ac.za">VRYWIL006@myuct.ac.za</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      Have questions or want to get in touch? Feel free to reach out to our
+      Communicator at:
+      <a href="mailto:mbylut003@myuct.ac.za">mbylut003@myuct.ac.za</a>
+    </p>
+  </section>
+
+  <section id="call-to-action">
+    <h2>Learn More</h2>
+    <p>
+      Want to support our mission or learn more? Check out our
+      <a href="{{ url_for('educational') }}">educational page</a> for more
+      information and resources.
+    </p>
+  </section>
+</main>
+{% endblock %}

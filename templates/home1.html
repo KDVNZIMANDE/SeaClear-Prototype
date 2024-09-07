@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeaClear - Real-Time Beach Water Quality</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/h_styles.css">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+</head>
+<body>
+    <header class="bg-primary text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="logo">SeaClear</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link text-white">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-white">Beaches</a></li>
+                    <li class="nav-item"><a href="{{ url_for('map') }}" class="nav-link text-white">Map</a></li>
+                    <li class="nav-item"><a href="{{ url_for('educational') }}" class="nav-link text-white">Education</a></li>
+                    <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link text-white">About</a></li>
+                </ul>
+            </nav>
+            <div>
+                <a href="{{ url_for('login') }}" class="btn btn-light">Login</a>
+                <a href="{{ url_for('sign_up') }}" class="btn btn-light">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="text-center mb-5">
+            <h2>Welcome to SeaClear</h2>
+            <p>Your source for real-time beach water quality information in Cape Town.</p>
+            <div class="input-group w-50 mx-auto">
+                <input type="text" class="form-control" placeholder="Search for a beach...">
+                <button class="btn btn-primary" >Search</button>
+            </div>
+        </section>
+
+        <section class="row">
+            {% for beach in beaches[:3] %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/' + beach.get('', 'map1.jpg')) }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ beach.name }}</h5>
+                        <p class="card-text">Water Quality: Good</p>
+                        <p class="card-text">Temperature: 20°C</p>
+                        <a href="{{ url_for('beach_detail', beach_id=beach.get('_id', '')) }}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-3 mb-4">
+                <div class="card d-flex align-items-center justify-content-center">
+                    <a href="#" class="btn btn-primary">Show All Beaches</a>
+                </div>
+            </div>
+        </section>
+        <!-- <div id="map" style="width: 50%; height: 300px; margin-top: 20px"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel slide" id="carousel-912024">
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-target="#carousel-912024">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-912024">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-912024" class="active">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    First Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" alt="Carousel Bootstrap Second" src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    Second Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" alt="Carousel Bootstrap Third" src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg" />
+                            <div class="carousel-caption">
+                                <h4>
+                                    Third Thumbnail label
+                                </h4>
+                                <p>
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                            </div>
+                        </div>
+                    </div> <a class="carousel-control-prev" href="#carousel-912024" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a class="carousel-control-next" href="#carousel-912024" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" alt="Bootstrap Thumbnail First" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+                            <div class="card-block">
+                                <h5 class="card-title">
+                                    Card title
+                                </h5>
+                                <p class="card-text">
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p>
+                                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" alt="Bootstrap Thumbnail Second" src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
+                            <div class="card-block">
+                                <h5 class="card-title">
+                                    Card title
+                                </h5>
+                                <p class="card-text">
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p>
+                                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" alt="Bootstrap Thumbnail Third" src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
+                            <div class="card-block">
+                                <h5 class="card-title">
+                                    Card title
+                                </h5>
+                                <p class="card-text">
+                                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                                </p>
+                                <p>
+                                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    </main>
+
+    <footer class="bg-dark text-white p-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 SeaClear. All rights reserved.</p>
+            <p><a href="#" class="text-white">Contact Us</a> | <a href="#" class="text-white">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-33.9249, 18.4241], 11); // Centered on Cape Town
+
+        // Add a tile layer (the background map)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Add markers for each beach (you can add more)
+        L.marker([-33.941, 18.377]).addTo(map).bindPopup(`<a href="/beach/66be64f06bd12ba5f1ed1eab">Clifton 4th Beach</a>`).openPopup();
+        L.marker([-34.05, 18.45]).addTo(map).bindPopup(`<a href="/beach/66be64f06bd12ba5f1ed1eac">Muizenberg Beach</a>`)
+        L.marker([-33.89, 18.49]).addTo(map).bindPopup(`<a href="/beach/66be64f06bd12ba5f1ed1ead">Bloubergstrand</a>`)
+    </script>
+</body>
+</html>

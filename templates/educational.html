@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}Water Quality{% endblock %} {% block
+content %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/water.css') }}"
+/>
+{% endblock %}
+
+<main>
+  <h2>Know Your Status</h2>
+  <table>
+    <tr>
+      <td class="unsafe">
+        <b class="unsafe-title">UNSAFE</b>
+        <br />
+        <img
+          src="{{ url_for('static', filename='images/unsafe.jpg') }}"
+          alt="Unsafe"
+        />
+      </td>
+      <td class="safe">
+        <b class="safe-title">SAFE</b>
+        <br />
+        <img
+          src="{{ url_for('static', filename='images/safe.jpg') }}"
+          alt="Safe"
+        />
+      </td>
+      <td class="info">
+        <b>ADDITIONAL INFO</b>
+        <br />
+        <img
+          src="{{ url_for('static', filename='images/info.png') }}"
+          alt="Info"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><b>Do not swim here</b></p>
+        <p>
+          Swimming in unsafe water can pose significant health risks, including:
+          <br />
+          - Skin infections
+          <br />
+          - Ear, nose, throat infections
+          <br />
+          - Gastrointestinal illnesses
+          <br />
+          - Exposure to harmful bacteria, viruses, and chemicals
+          <br />
+          - Long-term health complications
+        </p>
+      </td>
+      <td>
+        Take the plunge into clear, clean waters! Our latest water quality
+        checks show that the beach is in great shape, making it the perfect time
+        for a refreshing swim. Enjoy the inviting waves and soak up the sun in a
+        setting that's ideal for relaxation and fun!
+      </td>
+      <td>
+        Find more info here:
+        <br />
+        <a
+          href="https://www.capetown.gov.za/Explore%20and%20enjoy/nature-and-outdoors/our-precious-biodiversity/coastal-water-quality"
+          >Coastal water quality</a
+        >
+        <br />
+        <a
+          href="https://www.dailymaverick.co.za/article/2024-01-23-after-bacterial-infections-strand-beachgoers-call-for-effective-city-of-cape-town-water-quality-flag-system/"
+          >Coastal concerns</a
+        >
+        <br />
+        <a
+          href="https://www.thesouthafrican.com/news/these-popular-cape-town-beaches-have-chronic-water-quality-problems-breaking-12-december-2023/"
+          >‘Red flag’ beaches</a
+        >
+        <br />
+        <a href="https://time.com/5631608/swimming-illness-risks/"
+          >Swimming Related Illnesses</a
+        >
+        <br />
+        <a
+          href="https://www.niehs.nih.gov/research/programs/climatechange/health_impacts/waterborne_diseases"
+          >Waterborne Diseases</a
+        >
+      </td>
+    </tr>
+  </table>
+</main>
+{% endblock %}

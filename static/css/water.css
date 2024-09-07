@@ -1,0 +1,57 @@
+/* Reset default styles */
+body {
+    background-color: #f7f7ff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background-color: #4a90e2;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Heading style */
+h1 {
+    font-family: Georgia, serif;
+    margin: 20px 0;
+}
+
+/* Main content area */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+td {
+    padding: 15px;
+    vertical-align: top;
+    border: 2px solid #dddddd;
+    text-align: center;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer style */
+footer {
+    font-size: 0.8em;
+    text-align: center;
+    padding: 20px;
+    background-color: #4a90e2;
+    color: #ffffff;
+}

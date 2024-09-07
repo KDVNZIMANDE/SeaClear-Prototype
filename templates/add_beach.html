@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <h2>Add New Beach</h2>
+  <form
+    action="{{ url_for('add_beach') }}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="name">Beach Name</label>
+      <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+    <div class="form-group mt-3">
+      <label for="location">Location</label>
+      <input
+        type="text"
+        class="form-control"
+        id="location"
+        name="location"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" name="date" required />
+    </div>
+    <div class="form-group mt-3">
+      <label for="entrocciticount">Enterococci Count</label>
+      <input
+        type="text"
+        class="form-control"
+        id="entrocciticount"
+        name="entrocciticount"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="grade">Grade</label>
+      <input
+        type="text"
+        class="form-control"
+        id="grade"
+        name="grade"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="temperature">Temperature</label>
+      <input
+        type="text"
+        class="form-control"
+        id="temperature"
+        name="temperature"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="wind_speed">Wind Speed</label>
+      <input
+        type="text"
+        class="form-control"
+        id="wind_speed"
+        name="wind_speed"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="wind_direction">Wind Direction</label>
+      <input
+        type="text"
+        class="form-control"
+        id="wind_direction"
+        name="wind_direction"
+        required
+      />
+    </div>
+    <div class="form-group mt-3">
+      <label for="status">Status</label>
+      <select class="form-control" id="status" name="status" required>
+        <option value="SAFE">SAFE</option>
+        <option value="UNSAFE">UNSAFE</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label for="map_image">Map Image</label>
+      <input
+        type="file"
+        class="form-control-file"
+        id="map_image"
+        name="map_image"
+      />
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Add Beach</button>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary mt-4"
+      >Cancel</a
+    >
+  </form>
+</div>
+{% endblock %}

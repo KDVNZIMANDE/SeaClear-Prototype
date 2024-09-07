@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block title %}SeaClear - {{ beach.get('name', 'Unknown Beach') }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .left-column {
+    width: 60%;
+  }
+
+  .right-column {
+    width: 35%;
+    margin-left: 5%;
+  }
+
+  .card {
+    background-color: #fff;
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .card img {
+    width: 100%; /* Adjusted to take half of the card width */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .card-content {
+    padding: 20px;
+    width: 100%; /* Adjusted to take half of the card width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-content h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .card-content .conditions {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .card-content .status {
+    background-color: #38a169;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .card-content p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .card a {
+    text-decoration: none;
+  }
+
+  .card a:hover {
+    text-decoration: none;
+  }
+
+  .card {
+    border: 1px solid transparent;
+  }
+
+  .weather-info {
+    background-color: #2090ff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .weather-info .temp {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  .weather-info .details {
+    text-align: right;
+  }
+
+  .weather-info .details span {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .weather-info .icon {
+    font-size: 48px;
+    margin-right: 20px;
+  }
+
+  /* Amenities Section */
+  .amenities {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .amenity-box {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 30%; /* Adjust width to have 3 boxes in a row */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+  /* Community Chat Card */
+  .chat-card {
+    background-color: #f8f8f8;
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 580px; /* Adjust this to change the height, e.g., 300px or 500px */
+    overflow-y: auto; /* Add scroll if content overflows */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .chat-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .chat-card .message {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .chat-card .message .author {
+    font-weight: bold;
+    color: #1a3d5f;
+  }
+
+  .chat-card .message .time {
+    font-size: 12px;
+    color: #999;
+    float: right;
+  }
+
+  .chat-card .message p {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+
+.chat-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.chat-input input {
+    flex-grow: 1; /* Makes the input take up most of the width */
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+}
+
+.chat-input button {
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ccc;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex-grow: 1; /* This makes the message area take up all available space */
+    overflow-y: auto; /* Allows scrolling if messages overflow */
+    margin-bottom: 10px; /* Adds space between messages and input */
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="layout">
+    <!-- Left Column -->
+    <div class="left-column">
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/' + beach.get('image', 'map1.jpg')) }}">
+        <div class="card-content">
+            <h2>{{ beach.name }}</h2>
+            <div class="status">SAFE</div>
+        </div>
+        <!-- Real-time weather updates -->
+        <div class="weather-info">
+            <p>Temperature: 20°C</p>
+            <p>Weather: cloudy</p>
+            <p>Wind Speed: 7 m/s</p>
+        </div>
+      </div>
+    <!-- Amenities Section -->
+      <div class="amenities">
+        <div class="amenity-box">Restrooms</div>
+        <div class="amenity-box">Parking</div>
+        <div class="amenity-box">Lifeguard</div>
+        <div class="amenity-box">Swimming pools</div>
+      </div>
+      <div class="amenities">
+        <div class="amenity-box">Police station</div>
+        <div class="amenity-box">Parking</div>
+        <div class="amenity-box">Bike Rentals</div>
+        <div class="amenity-box">Picnic Areas</div>
+      </div>
+    </div>
+
+    
+
+    <!-- Right Column (Community Chat) -->
+    <div class="right-column">
+      <div class="chat-card">
+        <h3>Community Chat</h3>
+        <!-- Example messages -->
+        <div class="message">
+          <span class="author">User1</span> <span class="time">10:30 AM</span>
+          <p>Great weather today! The beach is lovely.</p>
+        </div>
+        <div class="message">
+          <span class="author">User2</span> <span class="time">11:00 AM</span>
+          <p>Anyone up for a volleyball match later?</p>
+        </div>
+        <!-- Input group for new messages -->
+            <div class="chat-messages">
+                <!-- Chat messages go here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type a message...">
+                <button type="button">Send</button>
+            </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

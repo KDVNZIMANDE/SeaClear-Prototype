@@ -1,0 +1,15 @@
+This prototype for the seaclear website has a pipenv in it that you can use to get all dependencies, this means you need pip and pipenv.
+if this is not working then please just make sure you install the listed dependencies in the Pipfile
+
+This prototype also requires a local instatiation of mongoDB on "localhost:27017"
+
+Once both prerequisites have been done, you can use pop_sample.py to get some sample data in the database which will add 2 users for you to use:
+-admin:
+email = admin@example.com
+password = adminpass
+-user:
+email = user1@example.com
+password = password123
+
+**DO NOT RUN "AddData.py"**
+This does not work and will populate your mongoDB with garbage

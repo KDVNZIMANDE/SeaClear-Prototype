@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Beach{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Edit Beach - {{ beach.name }}</h1>
+
+        <!-- Flash messages for feedback -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('edit_beach', beach_id=beach._id) }}" method="POST" enctype="multipart/form-data">
+            <!-- Form Fields -->
+            <div class="form-group">
+                <label for="name">Beach Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ beach.name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" value="{{ beach.location }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{ beach.date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="entrocciticount">Enterococci Count</label>
+                <input type="text" class="form-control" id="entrocciticount" name="entrocciticount" value="{{ beach.entrocciticount }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="grade">Grade</label>
+                <input type="text" class="form-control" id="grade" name="grade" value="{{ beach.grade }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="temperature">Temperature</label>
+                <input type="text" class="form-control" id="temperature" name="temperature" value="{{ beach.temperature }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="wind_speed">Wind Speed</label>
+                <input type="text" class="form-control" id="wind_speed" name="wind_speed" value="{{ beach.wind_speed }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="wind_direction">Wind Direction</label>
+                <input type="text" class="form-control" id="wind_direction" name="wind_direction" value="{{ beach.wind_direction }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="SAFE" {% if beach.status == 'SAFE' %}selected{% endif %}>SAFE</option>
+                    <option value="UNSAFE" {% if beach.status == 'UNSAFE' %}selected{% endif %}>UNSAFE</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="map_image">Map Image</label>
+                <input type="file" class="form-control-file" id="map_image" name="map_image">
+                <small>Current Image: {{ beach.map_image }}</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Update Beach</button>
+            <!-- Back Button -->
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary mt-3 ml-2">Back to Dashboard</a>
+        </form>
+    </div>
+{% endblock %}
+
